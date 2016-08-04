@@ -17,8 +17,8 @@ public class Book implements Serializable{
     private @Id @NonNull int id;
     private @Column(nullable = false) String title;
     private @Column(nullable = false) String author;
-    @ManyToOne
-    private User owner;
+//    @ManyToOne
+//    private User owner;
 
 
 

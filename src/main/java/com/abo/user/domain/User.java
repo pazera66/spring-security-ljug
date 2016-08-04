@@ -3,10 +3,7 @@ package com.abo.user.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 //TODO show AllArgsConstructor, NoArgsConstructor, Builder, Getter, ToString, EqualsAndHashCode
 
@@ -28,7 +25,7 @@ public class User implements Serializable {
     private @Column(nullable = false) String passwordHash;
     private @Column(nullable = false) @Enumerated(EnumType.STRING) Role role;
 
-    @OneToMany
-    private List<Book> bookList = new ArrayList<>();
+//    @OneToMany
+//    private List<Book> bookList = new ArrayList<>();
 
 }

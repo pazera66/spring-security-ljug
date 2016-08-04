@@ -1,6 +1,7 @@
 package com.abo.user.service;
 
 import com.abo.user.domain.User;
+import com.abo.user.persistance.BooksRepository;
 import com.abo.user.persistance.UserRepository;
 import javaslang.collection.Stream;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserInitializer {
 
     @Autowired
-    public UserInitializer(UserRepository repository, PasswordEncoder passwordEncoder) {
+    public UserInitializer(UserRepository repository, PasswordEncoder passwordEncoder, BooksRepository booksRepository) {
         Stream.of(
                 User.builder().login("james_bond").passwordHash(passwordEncoder.encode("james_bond")).role(User.Role.ADMIN).build()
                 , User.builder().login("harry_potter").passwordHash(passwordEncoder.encode("harry_potter")).role(User.Role.USER).build()
