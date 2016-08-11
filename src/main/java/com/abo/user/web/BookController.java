@@ -30,7 +30,7 @@ public class BookController {
     @RequestMapping("/mybooks")
     @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public List<Resource> getMyBooks(){
-        String owner = loggedUserGetter.getLoggedUserName();
+        String owner = "karol"; //loggedUserGetter.getLoggedUserName();
         return assembler.toResources(booksRepository.findByOwnerName(owner));
     }
 
