@@ -20,6 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class SpringSecurityLjugApplicationTests {
 
+	//TEST
+
 	@Autowired
 	private WebApplicationContext context;
 	private MockMvc mockMvc;
