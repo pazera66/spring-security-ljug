@@ -22,13 +22,13 @@ public class UserResourceAssembler extends ResourceAssemblerSupport<User, Resour
     @Override
     public List<Resource> toResources(Iterable<? extends User> users) {
         return StreamSupport.stream(users.spliterator(), false)
-                .map(user -> new Resource(user, linkTo(UserController.class).slash(user.getLogin()).withSelfRel()))
+                .map(user -> new Resource(user, linkTo(UserController.class).slash(user.getName()).withSelfRel()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Resource<User> toResource(User user) {
-        return new Resource(user, linkTo(UserController.class).slash(user.getLogin()).withSelfRel());
+        return new Resource(user, linkTo(UserController.class).slash(user.getName()).withSelfRel());
     }
 
 }
