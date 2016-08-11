@@ -21,7 +21,7 @@ public class User implements Serializable {
     }
 
     //TODO @NonNull
-    private @Id @NonNull String login;
+    private @Id @NonNull String name;
     private @Column(nullable = false) String passwordHash;
     private @Column(nullable = false) @Enumerated(EnumType.STRING) Role role;
 

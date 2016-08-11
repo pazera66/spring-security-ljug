@@ -16,8 +16,9 @@ public class UserInitializer {
     @Autowired
     public UserInitializer(UserRepository repository, PasswordEncoder passwordEncoder, BooksRepository booksRepository) {
         Stream.of(
-                User.builder().login("james_bond").passwordHash(passwordEncoder.encode("james_bond")).role(User.Role.ADMIN).build()
-                , User.builder().login("harry_potter").passwordHash(passwordEncoder.encode("harry_potter")).role(User.Role.USER).build()
+                User.builder().name("james_bond").passwordHash(passwordEncoder.encode("james_bond")).role(User.Role.ADMIN).build()
+                , User.builder().name("harry_potter").passwordHash(passwordEncoder.encode("harry_potter")).role(User.Role.USER).build()
+                , User.builder().name("karol").passwordHash(passwordEncoder.encode("karol")).role(User.Role.USER).build()
         ).forEach(user -> {
             repository.save(user);
             log.debug("user added: {}", user);

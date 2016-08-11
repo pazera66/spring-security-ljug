@@ -1,7 +1,9 @@
 package com.abo.user.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NonNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,14 +13,18 @@ import java.io.Serializable;
  */
 @Builder
 @Entity(name = "_book")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Book implements Serializable{
 
+    public Book(){}
 
-    private @Id @NonNull int id;
+    private @Id @GeneratedValue int id;
     private @Column(nullable = false) String title;
     private @Column(nullable = false) String author;
-//    @ManyToOne
-//    private User owner;
+    @ManyToOne
+    private User owner;
 
 
 

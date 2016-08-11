@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return Optional.ofNullable(userRepository.findOne(s))
                 .map(user -> CurrentUser.builder()
-                        .login(user.getLogin())
+                        .login(user.getName())
                         .passwordHash(user.getPasswordHash())
                         .role(user.getRole().name())
                         .build())
