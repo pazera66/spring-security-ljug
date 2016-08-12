@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface BooksRepository extends JpaRepository<Book, String> {
     List<Book> findByOwnerName(String user);
+    Book findById(int id);
 }

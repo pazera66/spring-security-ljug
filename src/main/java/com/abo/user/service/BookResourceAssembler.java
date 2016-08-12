@@ -25,13 +25,13 @@ public class BookResourceAssembler extends ResourceAssemblerSupport<Book, Resour
     @Override
     public List<Resource> toResources(Iterable<? extends Book> books) {
         return StreamSupport.stream(books.spliterator(), false)
-                .map(book -> new Resource(book, linkTo(BookController.class).slash(book.getTitle()).withSelfRel()))
+                .map(book -> new Resource(book, linkTo(BookController.class).slash(book.getId()).withSelfRel()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Resource<Book> toResource(Book book) {
-        return new Resource(book, linkTo(BookController.class).slash(book.getTitle()).withSelfRel());
+        return new Resource(book, linkTo(BookController.class).slash(book.getId()).withSelfRel());
     }
 
 

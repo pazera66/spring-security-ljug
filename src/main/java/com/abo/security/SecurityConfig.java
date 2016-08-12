@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //TODO describe security configuration
         http.authorizeRequests().anyRequest().anonymous();
-        http.httpBasic();
+//        http.httpBasic();
         http.csrf().disable();
     }
 
