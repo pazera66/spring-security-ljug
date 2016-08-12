@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentation;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.halLinks;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -76,13 +78,13 @@ public class SpringSecurityLjugApplicationTests {
     public void bookExists() throws Exception {
 
 
-        this.mockMvc.perform(get("/books/3").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/books/3").accept(MediaTypes.HAL_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaTypes.HAL_JSON))
                 .andExpect(jsonPath("$.title").value("Game of Thrones"))
                 .andDo(document("book-exists", preprocessResponse(prettyPrint()),
                         links(
-                                linkWithRel("self").description("Check if book exists")
+                                 linkWithRel("self").description("Check if book exists")
                         ),
                         responseFields(
                                 fieldWithPath("id").description("ID of the book"),

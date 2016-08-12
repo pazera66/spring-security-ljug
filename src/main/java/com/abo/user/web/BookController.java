@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 /**
  * Created by karol on 08.08.16.
  */
-
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
 @RequestMapping("/books")
@@ -56,7 +57,8 @@ public class BookController {
         return assembler.toResource(book);
     }
 
-    @RequestMapping(value = "/{id}", produces = "application/json")
+
+    @RequestMapping(value = "/{id}")
     public Resource getBook(@PathVariable("id") int id) {
         return assembler.toResource(booksRepository.findById(id));
     }
