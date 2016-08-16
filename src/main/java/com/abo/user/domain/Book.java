@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Book implements Serializable{
+public class Book implements Serializable {
 
     public Book(){}
 
@@ -25,7 +25,5 @@ public class Book implements Serializable{
     private @Column(nullable = false) String author;
     @ManyToOne
     private User owner;
-
-
 
 }

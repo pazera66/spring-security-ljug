@@ -1,0 +1,19 @@
+== Spring security JUG
+
+Ten projekt służy do testowania mechanizmów spring security i spring HATEOAS + Spring REST Docs. Projekt opiera się
+na prostej bazie danych CRUD userów i książek.
+
+=== Get Book
+[cols="h,5a"]
+|===
+|URL
+|/books/[bookID]
+
+| Method
+| GET
+
+| Example Response Body
+|include::{snippetsDirectory}/book-exists/http-response.adoc[]
+
+| Response fields description
+| include::{snippetsDirectory}/book-exists/response-fields.adoc[]

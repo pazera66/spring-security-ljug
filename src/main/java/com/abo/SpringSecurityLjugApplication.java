@@ -2,8 +2,10 @@ package com.abo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @SpringBootApplication
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class SpringSecurityLjugApplication {
 
 	//TODO test czy dziala

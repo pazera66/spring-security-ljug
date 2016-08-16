@@ -102,17 +102,18 @@
                 <version>1.5.2</version>
                 <executions>
                     <execution>
-                        <id>generate-docs</id>
-                        <phase>prepare-package</phase>
+                        <id>asciidoc-to-html</id>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
                         </goals>
                         <configuration>
                             <backend>html</backend>
-                            <doctype>book</doctype>
                             <attributes>
-                                <snippets>${snippets-Directory}</snippets>
+                                <snippets>${snippetsDirectory}</snippets>
                             </attributes>
+							<sourceDirectory>src/docs/asciidoc</sourceDirectory>
+							<outputDirectory>target/generated-docs</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

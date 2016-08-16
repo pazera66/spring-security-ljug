@@ -9,13 +9,13 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentation;
+import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.halLinks;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SpringSecurityLjugApplicationTests {
 
 	@Rule
-	public final RestDocumentation restDoc= new RestDocumentation("target/generater-snippets");
+	public final RestDocumentation restDoc= new RestDocumentation("target/generated-snippets");
 
 	@Autowired
 	private WebApplicationContext context;
@@ -82,17 +82,30 @@ public class SpringSecurityLjugApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaTypes.HAL_JSON))
                 .andExpect(jsonPath("$.title").value("Game of Thrones"))
-                .andDo(document("book-exists", preprocessResponse(prettyPrint()),
+                .andDo(MockMvcRestDocumentation.document("book-exists", preprocessResponse(prettyPrint()),
                         links(
-                                 linkWithRel("self").description("Check if book exists")
+                                 linkWithRel("self").description("The <<resources-book,Book resource>>")
+                                ,linkWithRel("Controller").description("The <<resources-Controller, Controller resource>>")
                         ),
                         responseFields(
-                                fieldWithPath("id").description("ID of the book"),
                                 fieldWithPath("title").description("Title of this book"),
                                 fieldWithPath("author").description("Author of this book"),
-                                fieldWithPath("owner").description("Owner of this book")
+                                fieldWithPath("owner").description("Owner of this book"),
+								fieldWithPath("_links").description("Links to relations")
                         )
                         ));
+
+//        MockMvcRestDocumentation.document("book-exists", preprocessResponse(prettyPrint()),
+//                links(
+//                        linkWithRel("self").description("Check if book exists")
+//                        ,linkWithRel("Controller").description("Link to BookController class")
+//                ),
+//                responseFields(
+//                        fieldWithPath("title").description("Title of this book"),
+//                        fieldWithPath("author").description("Author of this book"),
+//                        fieldWithPath("owner").description("Owner of this book")
+//                )
+//        );
     }
 
     @Test
