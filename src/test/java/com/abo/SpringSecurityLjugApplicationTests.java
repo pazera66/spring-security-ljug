@@ -91,7 +91,7 @@ public class SpringSecurityLjugApplicationTests {
                                 fieldWithPath("title").description("Title of this book"),
                                 fieldWithPath("author").description("Author of this book"),
                                 fieldWithPath("owner").description("Owner of this book"),
-								fieldWithPath("_links").description("Links to relations")
+								fieldWithPath("_links").description("<<resources-book-http-response-links,Links>> to relations")
                         )
                         ));
 

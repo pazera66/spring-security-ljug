@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 //TODO show AllArgsConstructor, NoArgsConstructor, Builder, Getter, ToString, EqualsAndHashCode
-
+// tag::contains[]
 @Entity(name = "_user")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,3 +29,5 @@ public class User implements Serializable {
 //    private List<Book> bookList = new ArrayList<>();
 
 }
+
+    // end::contains[]

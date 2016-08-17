@@ -1,19 +1,126 @@
-== Spring security JUG
+= Tytuł Placeholder
+Karol Król <karol.krol@impaqgroup.pl>;Piotr Wroński <piotr.wronski@impaqgroup.pl>;Joanna Wojcieszonek <Joanna.Wojscieszek@impaqgroup.pl>;Maciej Bajdowski <maciej.bajdowski@impaqgroup.pl>;Karol Torun <karol.torun@impaqgroup.pl>;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+
+
+[[overview]]
+= Opis ogólny
 
 Ten projekt służy do testowania mechanizmów spring security i spring HATEOAS + Spring REST Docs. Projekt opiera się
 na prostej bazie danych CRUD userów i książek.
 
-=== Get Book
-[cols="h,5a"]
+BlaBlaBla Lorem Ipsum
+
+Link do http://www.wp.pl[WP PL]
+
+Jeśli chcesz się skontaktować z {name
+
+[[overview-http-verbs]]
+== HTTP verbs
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs.
+
 |===
-|URL
-|/books/[bookID]
+| Verb | Usage
 
-| Method
-| GET
+| `GET`
+| Used to retrieve a resource
 
-| Example Response Body
-|include::{snippetsDirectory}/book-exists/http-response.adoc[]
+| `POST`
+| Used to create a new resource
 
-| Response fields description
-| include::{snippetsDirectory}/book-exists/response-fields.adoc[]
+| `PATCH`
+| Used to update an existing resource, including partial updates
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP status codes.
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+| `204 No Content`
+| An update to an existing resource has been applied successfully
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+| `404 Not Found`
+| The requested resource did not exist
+|===
+
+[[overview-hypermedia]]
+== Hypermedia
+
+RESTful Notes uses hypermedia and resources include links to other resources in their responses. Responses are in Hypertext Application Language (HAL) format. Links can be found beneath the _links key. Users of the API should not create URIs themselves, instead they should use the above-described links to navigate
+
+[[resources]]
+= Zasoby
+
+[[resources-book]]
+== Książka
+
+[[book-code]]
+=== Kod
+
+Do skasowania w dokumentacji REST
+----
+include::{sourcedir}/com/abo/user/domain/Book.java[indent=0]
+----
+
+
+[[get-book]]
+=== GET Book
+
+Pobiera dane ksiązki o żądanym ID
+
+[[resources-book-curl-request]]
+====  Curl Request
+
+include::{snippets}/book-exists/curl-request.adoc[]
+
+
+[[resources-book-http-request]]
+==== HTTP Request
+
+include::{snippets}/book-exists/http-request.adoc[]
+
+
+[[resources-book-http-response]]
+==== HTTP Response
+
+include::{snippets}/book-exists/http-response.adoc[]
+
+
+[[resources-book-http-response-links]]
+== Links
+
+include::{snippets}/book-exists/links.adoc[]
+
+
+[[resources-book-response-fields]]
+== Response fields
+
+include::{snippets}/book-exists/response-fields.adoc[]
+
+
