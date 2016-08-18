@@ -10,12 +10,15 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentation;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -24,6 +27,8 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -77,9 +82,10 @@ public class SpringSecurityLjugApplicationTests {
     //@Ignore
     public void bookExists() throws Exception {
 
-
-        this.mockMvc.perform(get("/books/3").accept(MediaTypes.HAL_JSON))
+		//GET nie z mockMVC
+        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/books/{id}", "3").accept(MediaTypes.HAL_JSON))
                 .andExpect(status().isOk())
+				.andExpect(header().string("Test", "testowa"))
                 .andExpect(content().contentType(MediaTypes.HAL_JSON))
                 .andExpect(jsonPath("$.title").value("Game of Thrones"))
                 .andDo(MockMvcRestDocumentation.document("book-exists", preprocessResponse(prettyPrint()),
@@ -92,7 +98,13 @@ public class SpringSecurityLjugApplicationTests {
                                 fieldWithPath("author").description("Author of this book"),
                                 fieldWithPath("owner").description("Owner of this book"),
 								fieldWithPath("_links").description("<<resources-book-http-response-links,Links>> to relations")
-                        )
+                        ),
+						responseHeaders(
+								headerWithName("Test").description("To tylko testowy nagłówek")
+						),
+						pathParameters(
+								parameterWithName("id").description("ID of book that is being requested")
+						)
                         ));
 
 //        MockMvcRestDocumentation.document("book-exists", preprocessResponse(prettyPrint()),

@@ -1,11 +1,25 @@
-= Tytuł Placeholder
-Karol Król <karol.krol@impaqgroup.pl>;Piotr Wroński <piotr.wronski@impaqgroup.pl>;Joanna Wojcieszonek <Joanna.Wojscieszek@impaqgroup.pl>;Maciej Bajdowski <maciej.bajdowski@impaqgroup.pl>;Karol Torun <karol.torun@impaqgroup.pl>;
+= *FloDocs*
+Karol Król <karol.krol@impaqgroup.com>;Piotr Wroński <piotr.wronski@impaqgroup.com>;Joanna Wojcieszonek <Joanna.Wojcieszonek@impaqgroup.com>;Maciej Bajdowski <maciej.bajdowski@impaqgroup.com>;Karol Torun <karol.torun@impaqgroup.com>;
 :doctype: book
 :icons: font
-:source-highlighter: highlightjs
+:source-highlighter: highlight.js
 :toc: left
 :toclevels: 4
+:sectnums:
 :sectlinks:
+:revnumber: 1.0
+:revdate: 18.08.2016
+
+
+Przykład jak odnosić się do autorów z headera
+
+{author_3} lubi *orzechy* i wysyła je sobie na {email_3}
+
+Lub inaczej:
+
+{lastname_3} {firstname_3} lubi orzechy.
+
+
 
 
 
@@ -74,6 +88,11 @@ use of HTTP status codes.
 
 RESTful Notes uses hypermedia and resources include links to other resources in their responses. Responses are in Hypertext Application Language (HAL) format. Links can be found beneath the _links key. Users of the API should not create URIs themselves, instead they should use the above-described links to navigate
 
+[[resources-path-param]]
+== Path Parameters
+
+include::{snippets}/book-exists/path-parameters.adoc[]
+
 [[resources]]
 = Zasoby
 
@@ -84,6 +103,9 @@ RESTful Notes uses hypermedia and resources include links to other resources in 
 === Kod
 
 Do skasowania w dokumentacji REST
+
+[source,java]
+.Book.class
 ----
 include::{sourcedir}/com/abo/user/domain/Book.java[indent=0]
 ----
@@ -123,4 +145,20 @@ include::{snippets}/book-exists/links.adoc[]
 
 include::{snippets}/book-exists/response-fields.adoc[]
 
+[[resources-book-headers]]
+== Response headers
+
+----
+include::{snippets}/book-exists/response-headers.adoc[]
+----
+
+
+[colophon]
+== Colophon
+
+FloDocs
+
+Wersja: {revnumber}
+
+Data kompilacji: {revdate}
 

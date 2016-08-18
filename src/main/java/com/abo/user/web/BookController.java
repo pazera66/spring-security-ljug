@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,13 +84,14 @@ public class BookController {
 //    }
 
     @RequestMapping(value = "/{id}")
-    public ResponseEntity<BookResource> getBook(@PathVariable("id") int id) {
+
+    public ResponseEntity<BookResource> getBook(@PathVariable("id") int id, HttpServletResponse response) {
         Book book = booksRepository.findById(id);
+
         BookResource bookResource = new BookResource(book);
-
-
         bookResource.add(linkTo(BookController.class).slash(id).withSelfRel());
         bookResource.add(linkTo(BookController.class).withRel("Controller"));
+        response.addHeader("Test", "testowa");
         return new ResponseEntity<BookResource>(bookResource, OK);
     }
 
