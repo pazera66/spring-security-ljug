@@ -1,4 +1,4 @@
-= *FloDocs*
+= *Project Name Placeholder*
 Karol Król <karol.krol@impaqgroup.com>;Piotr Wroński <piotr.wronski@impaqgroup.com>;Joanna Wojcieszonek <Joanna.Wojcieszonek@impaqgroup.com>;Maciej Bajdowski <maciej.bajdowski@impaqgroup.com>;Karol Torun <karol.torun@impaqgroup.com>;
 :doctype: book
 :icons: font
@@ -10,7 +10,6 @@ Karol Król <karol.krol@impaqgroup.com>;Piotr Wroński <piotr.wronski@impaqgroup
 :revnumber: 1.0
 :revdate: 18.08.2016
 
-
 Przykład jak odnosić się do autorów z headera
 
 {author_3} lubi *orzechy* i wysyła je sobie na {email_3}
@@ -18,8 +17,6 @@ Przykład jak odnosić się do autorów z headera
 Lub inaczej:
 
 {lastname_3} {firstname_3} lubi orzechy.
-
-
 
 
 

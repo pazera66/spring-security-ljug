@@ -47,7 +47,11 @@ public class SpringSecurityLjugApplicationTests {
 	@Before
 	public void init(){
 		mockMvc = MockMvcBuilders.webAppContextSetup(context)
-                .apply(documentationConfiguration(this.restDoc)).build();
+                .apply(documentationConfiguration(this.restDoc).uris()
+                .withScheme("https")
+                .withHost("localhost")
+                .withPort(8080))
+				.build();
 	}
 
 	@Test
@@ -107,17 +111,6 @@ public class SpringSecurityLjugApplicationTests {
 						)
                         ));
 
-//        MockMvcRestDocumentation.document("book-exists", preprocessResponse(prettyPrint()),
-//                links(
-//                        linkWithRel("self").description("Check if book exists")
-//                        ,linkWithRel("Controller").description("Link to BookController class")
-//                ),
-//                responseFields(
-//                        fieldWithPath("title").description("Title of this book"),
-//                        fieldWithPath("author").description("Author of this book"),
-//                        fieldWithPath("owner").description("Owner of this book")
-//                )
-//        );
     }
 
     @Test
